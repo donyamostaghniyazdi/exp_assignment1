@@ -1,0 +1,51 @@
+<launch>
+
+    <rosparam param="state/initial_pose"> [3.5,  1.0] </rosparam>
+    <rosparam param="config/environment_size"> [10.0, 10.0] </rosparam>
+        
+      <node pkg="armor" 
+            type="execute" 
+            name="armor_service" 
+            args="it.emarolab.armor.ARMORMainService"
+      > </node>
+
+      <node pkg = "ontological_robot_control"  
+            type = "robot_states.py" 
+            name = "robot_states"
+            output = "screen"
+      > </node>
+    
+      <node pkg = "ontological_robot_control"  
+            type = "planner.py"
+            name = "planner"
+      > </node>
+    
+      <node pkg = "ontological_robot_control"  
+            type = "controller.py"
+            name = "controller"
+      > </node>
+
+      <node pkg = "ontological_robot_control"  
+            type = "planner_client.py"
+            name = "planner_client"
+            output = "screen"
+      > </node>
+
+      <node pkg = "ontological_robot_control"  
+            type = "controller_client.py"
+            name = "controller_client"
+            output = "screen"
+      > </node>
+
+      <node pkg = "ontological_robot_control"  
+            type = "finite_state_machine.py"
+            name = "finite_state_machine"
+            output = "screen"
+      > </node>
+
+      <node pkg = "smach_viewer"  
+            type = "smach_viewer.py"
+            name = "smach_viewer"
+      > </node>
+
+</launch>
