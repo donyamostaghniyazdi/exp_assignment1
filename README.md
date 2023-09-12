@@ -5,9 +5,8 @@ This package is an experiment to use a topogical map ontology for controling a r
 environment with multiple rooms and a mobile robot. You can get to know more about the detatils of the source code using the 
 [documentation](https://github.com/donyamostaghniyazdi/exp_assignment1) provided for this rospackage.
 
-<p align="center">
-<img src="">
-</p>
+![267398077-3ce9f170-25c5-4180-923e-6b25f7df777c](https://github.com/donyamostaghniyazdi/exp_assignment1/assets/80056149/bd4b7d70-28f5-4d57-bbed-6269f9bad587)
+
 
 The robot start in the E location and waits until it receives the information to build the
 topological map, i.e., the relations between C1, C2, R1, R2, R3 locations and the doors D1...D6.
@@ -33,9 +32,7 @@ for using the ontology of topogical map for controling the robot in ROS.
 
 The software architucture is represented in the following figure.
 
-<p align="center">
-<img src="">
-</p>
+![sofar_assign1 drawio](https://github.com/donyamostaghniyazdi/exp_assignment1/assets/80056149/00988c7d-e3a1-4289-b125-7a49753c63c2)
 
 The components of this software architucture can be described as follows:
 
@@ -85,9 +82,8 @@ retreives the target room based on last visit times, finaly sends the target roo
 ### node graph
 The node graph is represented in the following figure.
 
-<p align="center">
-<img src="">
-</p>
+![ros_graph_assig1 drawio](https://github.com/donyamostaghniyazdi/exp_assignment1/assets/80056149/fc3cf098-bf1f-493f-b2b0-4e853e63eadb)
+
 
 ### Temporal Diagram (UML Sequence Diagram)
 The following figure represents the UML sequence diagram of this package. In the initial state, user launches the nodes, causing some of them
@@ -95,9 +91,7 @@ to get some rosparams such as ``environment_size`` and ``initial_pose``. Then, i
 ``finite_state_machine`` node, gets the current robot pose from ``robot-state`` node and updates the ontology, then the target room will be sent to the ``planner_client`` through ``/target_point`` topic and also the state of gets changed considering the target room. ``Planner`` tries to find the path and 
 sends it to the ``planner_client`` as ``PlanResult``. Finally the ``controller_client`` node subscribes the ``/path`` topic and sends it as ``ControlGoal`` to the ``controller`` node so that it can move the robot by setting the robot pose through ``/state/set_pose`` service and the cycles goes on again.
 
-<p align="center">
-<img src="">
-</p>
+![sequence diagram_assign1 drawio](https://github.com/donyamostaghniyazdi/exp_assignment1/assets/80056149/18480af4-6b0b-43ad-9c4b-72efe3114916)
 
 ## Usage
 ### Installation
@@ -148,24 +142,11 @@ $ source devel/setup.bash
 $ roslaunch ontological_robot_control topological_map.launch
 ```
 
-Here is the result of launching this package:
-
-<p align="center">
-<img src="">
-</p>
-
-The above gif shows the overview of launching this package, as it can be seen in the finite state machine the robot starts from room "E", and 
-considering the initial last visit times defined in the ontology, the first target room is "R1". When it reaches the target room the next one 
-is "R3" and the "R4" but before reaching "R4" the battery level gets below the threshold "7" and causes the robot to go first to room "E" and then 
-"R4", and so on.
 
 ## Working Hypothesis and Environment
 
 1. System's Features: The topological map is considered to be in size 10x10. Each time when a room is chosen as a target room from the ontology, the corresponding point will be sent to the planner as ``PlanGoal``
 
-<p align="center">
-<img src="">
-</p>
 
 2. System's Limitations: The planner is the main limitation in this rospackage, because it only considers the starting and target point. The battery level is also a limitation in the robot behaviour, causing it to select the charging room "E" over the target room resulted from the last visit times.
 
