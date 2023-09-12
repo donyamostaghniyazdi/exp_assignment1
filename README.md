@@ -1,4 +1,4 @@
-# ontological-robot-control
+# assignment1
 
 ## Introduction
 This package is an experiment to use a topogical map ontology for controling a robot in ROS through aRMOR service. The ontology consists of an indoor 
