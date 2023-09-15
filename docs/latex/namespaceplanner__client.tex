@@ -1,0 +1,90 @@
+\hypertarget{namespaceplanner__client}{}\doxysection{planner\+\_\+client Namespace Reference}
+\label{namespaceplanner__client}\index{planner\_client@{planner\_client}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespaceplanner__client_aadfbc442bf3af58ffad47c711e76b78e}{planner\+\_\+client\+\_\+callback}} (data)
+\item 
+def \mbox{\hyperlink{namespaceplanner__client_adac57d853c27a319c6296ba6a564a58f}{planner\+\_\+client}} (x, y)
+\item 
+def \mbox{\hyperlink{namespaceplanner__client_a62a0d38393cb85613efd807af54b5b74}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespaceplanner__client_ac9406feffc760a92d719267301801a7d}{L\+O\+G\+\_\+\+T\+AG}} = anm.\+N\+O\+D\+E\+\_\+\+P\+L\+A\+N\+N\+E\+R\+\_\+\+C\+L\+I\+E\+NT
+\item 
+\mbox{\hyperlink{namespaceplanner__client_ae3977d57a78efd19d5e45dc3c4020ded}{pub}} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}.. module:: planner_client
+:platform: Unix
+:synopsis: the planner_client python script in ontological_robot_control package
+
+.. moduleauthor:: Donya MostaghniYazdi <donya.mostaghni01@gmail.com>
+
+Subscribes to:
+/target_point
+
+Publishes to:
+/path
+
+Uses Action:
+/motion/planner
+
+Gets the target point from ``finite_state_machine`` node through ``/target_point``
+topic and sends it as an action goal to ``/motion/planner`` action server
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespaceplanner__client_a62a0d38393cb85613efd807af54b5b74}\label{namespaceplanner__client_a62a0d38393cb85613efd807af54b5b74}} 
+\index{planner\_client@{planner\_client}!main@{main}}
+\index{main@{main}!planner\_client@{planner\_client}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def planner\+\_\+client.\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialise this node, defines subscriber to ``/target_point`` and publisher to 
+``/path`` topic with ``planner_client_callback(data)`` function
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceplanner__client_adac57d853c27a319c6296ba6a564a58f}\label{namespaceplanner__client_adac57d853c27a319c6296ba6a564a58f}} 
+\index{planner\_client@{planner\_client}!planner\_client@{planner\_client}}
+\index{planner\_client@{planner\_client}!planner\_client@{planner\_client}}
+\doxysubsubsection{\texorpdfstring{planner\_client()}{planner\_client()}}
+{\footnotesize\ttfamily def planner\+\_\+client.\+planner\+\_\+client (\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Action client function for ``/motion/planner`` action server, sends the target point to the
+planner server
+
+Args:
+    x(float)
+    y(float)
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaceplanner__client_aadfbc442bf3af58ffad47c711e76b78e}\label{namespaceplanner__client_aadfbc442bf3af58ffad47c711e76b78e}} 
+\index{planner\_client@{planner\_client}!planner\_client\_callback@{planner\_client\_callback}}
+\index{planner\_client\_callback@{planner\_client\_callback}!planner\_client@{planner\_client}}
+\doxysubsubsection{\texorpdfstring{planner\_client\_callback()}{planner\_client\_callback()}}
+{\footnotesize\ttfamily def planner\+\_\+client.\+planner\+\_\+client\+\_\+callback (\begin{DoxyParamCaption}\item[{}]{data }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Subscriber callback function for ``/target_point`` topic, runs the ``planner_client()`` function
+
+Args:
+    data(Point)
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceplanner__client_ac9406feffc760a92d719267301801a7d}\label{namespaceplanner__client_ac9406feffc760a92d719267301801a7d}} 
+\index{planner\_client@{planner\_client}!LOG\_TAG@{LOG\_TAG}}
+\index{LOG\_TAG@{LOG\_TAG}!planner\_client@{planner\_client}}
+\doxysubsubsection{\texorpdfstring{LOG\_TAG}{LOG\_TAG}}
+{\footnotesize\ttfamily planner\+\_\+client.\+L\+O\+G\+\_\+\+T\+AG = anm.\+N\+O\+D\+E\+\_\+\+P\+L\+A\+N\+N\+E\+R\+\_\+\+C\+L\+I\+E\+NT}
+
+\mbox{\Hypertarget{namespaceplanner__client_ae3977d57a78efd19d5e45dc3c4020ded}\label{namespaceplanner__client_ae3977d57a78efd19d5e45dc3c4020ded}} 
+\index{planner\_client@{planner\_client}!pub@{pub}}
+\index{pub@{pub}!planner\_client@{planner\_client}}
+\doxysubsubsection{\texorpdfstring{pub}{pub}}
+{\footnotesize\ttfamily planner\+\_\+client.\+pub = None}
+

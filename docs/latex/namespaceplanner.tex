@@ -1,0 +1,59 @@
+\hypertarget{namespaceplanner}{}\doxysection{planner Namespace Reference}
+\label{namespaceplanner}\index{planner@{planner}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classplanner_1_1_planing_action}{Planing\+Action}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespaceplanner_a1e3cfda9cc52ca9f392730d676fe4328}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespaceplanner_a4209f7309acdbba1a84f1587681dfec0}{L\+O\+G\+\_\+\+T\+AG}} = anm.\+N\+O\+D\+E\+\_\+\+P\+L\+A\+N\+N\+ER
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}.. module:: planner
+    :platform: Unix
+    :synopsis: the planner python script in ontological_robot_control package
+
+.. moduleauthor:: Donya MostaghniYazdi <donya.mostaghni01@gmail.com>
+
+Uses Service:
+    /state/get_pose
+
+Uses Action:
+    /motion/planner
+
+Uses Param:
+    /config/environment_size
+
+An action server to simulate motion planning.
+Given a target position, it retrieves the current robot position from the 
+``robot-state`` node, and return a plan as a set of via points.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespaceplanner_a1e3cfda9cc52ca9f392730d676fe4328}\label{namespaceplanner_a1e3cfda9cc52ca9f392730d676fe4328}} 
+\index{planner@{planner}!main@{main}}
+\index{main@{main}!planner@{planner}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def planner.\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialise the node, its action server, and wait. 
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceplanner_a4209f7309acdbba1a84f1587681dfec0}\label{namespaceplanner_a4209f7309acdbba1a84f1587681dfec0}} 
+\index{planner@{planner}!LOG\_TAG@{LOG\_TAG}}
+\index{LOG\_TAG@{LOG\_TAG}!planner@{planner}}
+\doxysubsubsection{\texorpdfstring{LOG\_TAG}{LOG\_TAG}}
+{\footnotesize\ttfamily planner.\+L\+O\+G\+\_\+\+T\+AG = anm.\+N\+O\+D\+E\+\_\+\+P\+L\+A\+N\+N\+ER}
+

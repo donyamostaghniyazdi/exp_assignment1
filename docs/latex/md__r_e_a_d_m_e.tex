@@ -1,0 +1,125 @@
+\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{Introduction}\label{md__r_e_a_d_m_e_autotoc_md1}
+This package is an experiment to use a topogical map ontology for controling a robot in R\+OS through a\+R\+M\+OR service. The ontology consists of an indoor environment with multiple rooms and a mobile robot. You can get to know more about the detatils of the source code using the \href{https://github.com/donyamostaghniyazdi/exp_assignment1}{\texttt{ documentation}} provided for this rospackage.
+
+The robot start in the E location and waits until it receives the information to build the topological map, i.\+e., the relations between C1, C2, R1, R2, R3 locations and the doors D1...D6. The robot moves in a new location, and waits for some times before to visit another location. This behavior is repeated in a infinite loop.
+
+When the robot battery is low, it goes in the E location, and wait for some times before to start again with the above behavior.
+
+When robot battery is not low, it should move among locations with this policy\+:
+
+
+\begin{DoxyEnumerate}
+\item It should mainly stay on corridors,
+\item If a reachable room has not been visited for some times it should visit it.
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{Software Architecture}\label{md__r_e_a_d_m_e_autotoc_md2}
+In order to simulate the movements of the robot and its stimulus, the approach presented in the \href{https://github.com/buoncubi/arch_skeleton}{\texttt{ arch\+\_\+skeleton}} example is used with some changes (e.\+g. planner and controller delay time, battery level).
+
+Other main part of software architucture consists of finite state machine which is based on \href{http://wiki.ros.org/smach}{\texttt{ smach}} for having a better overview of process states and transitions among them and \href{https://github.com/EmaroLab/armor}{\texttt{ a\+R\+M\+OR}} for using the ontology of topogical map for controling the robot in R\+OS.
+
+The software architucture is represented in the following figure.
+
+The components of this software architucture can be described as follows\+:\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{robot-\/state}\label{md__r_e_a_d_m_e_autotoc_md3}
+The {\ttfamily robot-\/state} is a node that encodes the knowledge shared among the other components, and it implements two services for robot position (i.\+e., {\ttfamily state/set\+\_\+pose} and {\ttfamily state/get\+\_\+pose}) and two other for robot battery level (i.\+e., {\ttfamily state/set\+\_\+battery\+\_\+level} and {\ttfamily state/get\+\_\+battery\+\_\+level})\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{motion planner}\label{md__r_e_a_d_m_e_autotoc_md4}
+The planner node implements an action server named {\ttfamily motion/planner}. This is done by the means of the {\ttfamily Simple\+Action\+Server} class based on the {\ttfamily Plan} action message. This action server requires the {\ttfamily state/get\+\_\+pose/} service of the {\ttfamily robot-\/state} node, and a {\ttfamily target} point given as goal.
+
+Given the current and target points, this component returns a plan as a list of {\ttfamily via\+\_\+points}, which only consist of the starting and ending points for simplicity. Morever the delay time for generating the path is considered to be small to prevent conflicts between robot real situation and finite state machine. When a new {\ttfamily via\+\_\+points} is generated, the updated plan is provided as {\ttfamily feedback}. When all the {\ttfamily via\+\_\+points} have been generated, the plan is provided as {\ttfamily results}.
+
+There is also a {\ttfamily \mbox{\hyperlink{namespaceplanner__client}{planner\+\_\+client}}} node, which gets the target point from {\ttfamily \mbox{\hyperlink{namespacefinite__state__machine}{finite\+\_\+state\+\_\+machine}}} node through {\ttfamily /target\+\_\+point} topic and sends it to the planner server as action goal. When the result is found as it is described above, publishes it to the {\ttfamily /path} topic to be used by the {\ttfamily \mbox{\hyperlink{namespacecontroller__client}{controller\+\_\+client}}} node.\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysubsection{motion controller}\label{md__r_e_a_d_m_e_autotoc_md5}
+The {\ttfamily controller} node implements an action server named {\ttfamily motion/controller}. This is done by the means of the {\ttfamily Simple\+Action\+Server} class based on the {\ttfamily Control} action message. This action server requires the {\ttfamily state/set\+\_\+pose/} service of the {\ttfamily robot-\/state} node and a plan given as a list of {\ttfamily via\+\_\+points} by the {\ttfamily planner}.
+
+Given the plan and the current robot position, this component iterates for each planned {\ttfamily via\+\_\+point} and waits to simulate the time spent moving the robot to that location. The waiting time is computed using the robot speed and the eucledian distance between the points. Each time a {\ttfamily via\+\_\+point} is reached the {\ttfamily state/set\+\_\+pose} service is invoked, and a {\ttfamily feedback} is provided. When the last {\ttfamily via\+\_\+point} is reached, the action service provides a result by propagating the current robot position, which has been already updated through the {\ttfamily state/set\+\_\+pose} service. Morever in each movement step, the robot battery level is read by the {\ttfamily controller} node using {\ttfamily state/get\+\_\+battery\+\_\+level} and after decreasing gets set through {\ttfamily state/set\+\_\+battery\+\_\+level}.
+
+The provided {\ttfamily \mbox{\hyperlink{namespacecontroller__client}{controller\+\_\+client}}} node, subscribes {\ttfamily /path} topic to get the {\ttfamily via\+\_\+points} and then sends them to the {\ttfamily controller} server as an action goal.\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysubsection{finite state machin -\/ a\+R\+M\+OR}\label{md__r_e_a_d_m_e_autotoc_md6}
+Defines the states and transitions for the finite state machine of the topological map, it also uses {\ttfamily \mbox{\hyperlink{topological__map_8py}{topological\+\_\+map.\+py}}} helper script to update the ontology while the process is running, and retreives the target room based on last visit times, finaly sends the target room pose to the {\ttfamily \mbox{\hyperlink{namespaceplanner__client}{planner\+\_\+client}}} through {\ttfamily /target\+\_\+point} in order to find the path.\hypertarget{md__r_e_a_d_m_e_autotoc_md7}{}\doxysubsection{node graph}\label{md__r_e_a_d_m_e_autotoc_md7}
+The node graph is represented in the following figure.\hypertarget{md__r_e_a_d_m_e_autotoc_md8}{}\doxysubsection{Temporal Diagram (\+U\+M\+L Sequence Diagram)}\label{md__r_e_a_d_m_e_autotoc_md8}
+The following figure represents the U\+ML sequence diagram of this package. In the initial state, user launches the nodes, causing some of them to get some rosparams such as {\ttfamily environment\+\_\+size} and {\ttfamily initial\+\_\+pose}. Then, in each loop cycle, {\ttfamily armor\+\_\+service} which is implemented inside {\ttfamily \mbox{\hyperlink{namespacefinite__state__machine}{finite\+\_\+state\+\_\+machine}}} node, gets the current robot pose from {\ttfamily robot-\/state} node and updates the ontology, then the target room will be sent to the {\ttfamily \mbox{\hyperlink{namespaceplanner__client}{planner\+\_\+client}}} through {\ttfamily /target\+\_\+point} topic and also the state of gets changed considering the target room. {\ttfamily Planner} tries to find the path and sends it to the {\ttfamily \mbox{\hyperlink{namespaceplanner__client}{planner\+\_\+client}}} as {\ttfamily Plan\+Result}. Finally the {\ttfamily \mbox{\hyperlink{namespacecontroller__client}{controller\+\_\+client}}} node subscribes the {\ttfamily /path} topic and sends it as {\ttfamily Control\+Goal} to the {\ttfamily controller} node so that it can move the robot by setting the robot pose through {\ttfamily /state/set\+\_\+pose} service and the cycles goes on again.\hypertarget{md__r_e_a_d_m_e_autotoc_md9}{}\doxysection{Usage}\label{md__r_e_a_d_m_e_autotoc_md9}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md10}{}\doxysubsection{Installation}\label{md__r_e_a_d_m_e_autotoc_md10}
+This package is based on \href{https://github.com/EmaroLab/armor}{\texttt{ a\+R\+M\+OR}} it has to be installed as it is described in the provided link as a pre-\/condition for running this package.
+
+It is also depended on \href{http://wiki.ros.org/smach}{\texttt{ smach}}, it can be installed using the following commands\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$ sudo apt-\/get install ros-\/<distro>-\/executive-\/smach*}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$ sudo apt-\/get install ros-\/<distro>-\/smach-\/viewer}
+\end{DoxyCode}
+
+
+Once the dependencies are met, the package can be installed as it follows\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$ mkdir -\/p catkin\_ws/src}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$catkin\_create\_pkg ontological\_robot\_control}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{```bashscript}
+\DoxyCodeLine{\$ cd catkin\_ws/src}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$ git clone https://github.com/donyamostaghniyazdi/exp\_assignment1}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$ cd ..}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$ source /opt/ros/<distro>/setup.bash}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$ catkin\_make}
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md11}{}\doxysubsection{Running}\label{md__r_e_a_d_m_e_autotoc_md11}
+In order to initialize the software architucture along with the finite state machine representation, run the following command.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$ source devel/setup.bash}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$ roslaunch ontological\_robot\_control topological\_map.launch}
+\end{DoxyCode}
+
+
+Here is the result of launching this package\+:
+
+The above gif shows the overview of launching this package, as it can be seen in the finite state machine the robot starts from room \char`\"{}\+E\char`\"{}, and considering the initial last visit times defined in the ontology, the first target room is \char`\"{}\+R1\char`\"{}. When it reaches the target room the next one is \char`\"{}\+R3\char`\"{} and the \char`\"{}\+R4\char`\"{} but before reaching \char`\"{}\+R4\char`\"{} the battery level gets below the threshold \char`\"{}7\char`\"{} and causes the robot to go first to room \char`\"{}\+E\char`\"{} and then \char`\"{}\+R4\char`\"{}, and so on.\hypertarget{md__r_e_a_d_m_e_autotoc_md12}{}\doxysection{Working Hypothesis and Environment}\label{md__r_e_a_d_m_e_autotoc_md12}
+
+\begin{DoxyEnumerate}
+\item System\textquotesingle{}s Features\+: The topological map is considered to be in size 10x10. Each time when a room is chosen as a target room from the ontology, the corresponding point will be sent to the planner as {\ttfamily Plan\+Goal}
+\end{DoxyEnumerate}
+
+
+\begin{DoxyEnumerate}
+\item System\textquotesingle{}s Limitations\+: The planner is the main limitation in this rospackage, because it only considers the starting and target point. The battery level is also a limitation in the robot behaviour, causing it to select the charging room \char`\"{}\+E\char`\"{} over the target room resulted from the last visit times.
+\item Possible Technical Improvements\+: The planner node could be improved in such a way that it considers the walls more precisely. The battery level could also implemented in a more realistic way.
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md13}{}\doxysection{Authors and Contacts}\label{md__r_e_a_d_m_e_autotoc_md13}
+
+\begin{DoxyItemize}
+\item Donya Mostaghni\+Yazdi
+\item email\+: \href{mailto:donya.mostaghni01@gmail.com}{\texttt{ donya.\+mostaghni01@gmail.\+com}} 
+\end{DoxyItemize}

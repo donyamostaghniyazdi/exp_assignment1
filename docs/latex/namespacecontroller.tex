@@ -1,0 +1,64 @@
+\hypertarget{namespacecontroller}{}\doxysection{controller Namespace Reference}
+\label{namespacecontroller}\index{controller@{controller}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcontroller_1_1_controlling_action}{Controlling\+Action}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacecontroller_a8118d5e083db16a381dbecddfd6cc646}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacecontroller_a4fc1b6a99bc87906a47c7cad719ccb74}{L\+O\+G\+\_\+\+T\+AG}} = anm.\+N\+O\+D\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}.. module:: controller
+    :platform: Unix
+    :synopsis: the controller python script in ontological_robot_control package
+
+.. moduleauthor:: Donya MostaghniYazdi <donya.mostaghni01@gmail.com>
+
+Uses Service:
+    /state/get_pose
+
+    /state/set_pose
+
+    /state/get_battery_level
+
+    /state/set_battery_level
+
+Uses Action:
+    /motion/controller
+
+An action server to simulate motion controlling.
+Given a plan as a set of via points, it simulate the movements to reach each point with 
+a delay computed by dividing the eucledian distance between the robot current position and
+target point by the robot speed. This server updates the current robot position stored in 
+the ``robot-state`` node.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacecontroller_a8118d5e083db16a381dbecddfd6cc646}\label{namespacecontroller_a8118d5e083db16a381dbecddfd6cc646}} 
+\index{controller@{controller}!main@{main}}
+\index{main@{main}!controller@{controller}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def controller.\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialise the node, its action server, and wait.   
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacecontroller_a4fc1b6a99bc87906a47c7cad719ccb74}\label{namespacecontroller_a4fc1b6a99bc87906a47c7cad719ccb74}} 
+\index{controller@{controller}!LOG\_TAG@{LOG\_TAG}}
+\index{LOG\_TAG@{LOG\_TAG}!controller@{controller}}
+\doxysubsubsection{\texorpdfstring{LOG\_TAG}{LOG\_TAG}}
+{\footnotesize\ttfamily controller.\+L\+O\+G\+\_\+\+T\+AG = anm.\+N\+O\+D\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}
+

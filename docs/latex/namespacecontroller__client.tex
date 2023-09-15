@@ -1,0 +1,78 @@
+\hypertarget{namespacecontroller__client}{}\doxysection{controller\+\_\+client Namespace Reference}
+\label{namespacecontroller__client}\index{controller\_client@{controller\_client}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacecontroller__client_aaba31fe02a7b7c2f722b2d929f8871f4}{controller\+\_\+client\+\_\+callback}} (data)
+\item 
+def \mbox{\hyperlink{namespacecontroller__client_aa1072cdc6dfc3937ed3526531f518036}{controller\+\_\+client}} (goal)
+\item 
+def \mbox{\hyperlink{namespacecontroller__client_afe7636c5f07fa8dc926e5440a47c5085}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacecontroller__client_a6baba095519d9d9d507537a9395420d4}{L\+O\+G\+\_\+\+T\+AG}} = anm.\+N\+O\+D\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+C\+L\+I\+E\+NT
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}.. module:: controller_client
+    :platform: Unix
+    :synopsis: the controller_client python script in ontological_robot_control package
+
+.. moduleauthor:: Donya MostaghniYazdi <donya.mostaghni01@gmail.com>
+
+Subscribes to:
+    /path
+
+Uses Action:
+    /motion/controller
+
+Gets the found path from ``planner`` node through ``/path`` topic and sends 
+it as an action goal to ``/motion/controller`` action server
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacecontroller__client_aa1072cdc6dfc3937ed3526531f518036}\label{namespacecontroller__client_aa1072cdc6dfc3937ed3526531f518036}} 
+\index{controller\_client@{controller\_client}!controller\_client@{controller\_client}}
+\index{controller\_client@{controller\_client}!controller\_client@{controller\_client}}
+\doxysubsubsection{\texorpdfstring{controller\_client()}{controller\_client()}}
+{\footnotesize\ttfamily def controller\+\_\+client.\+controller\+\_\+client (\begin{DoxyParamCaption}\item[{}]{goal }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Action client function for ``/motion/controller`` action server, sends the found path to the
+controller server
+
+Args:
+    goal(Point[])
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacecontroller__client_aaba31fe02a7b7c2f722b2d929f8871f4}\label{namespacecontroller__client_aaba31fe02a7b7c2f722b2d929f8871f4}} 
+\index{controller\_client@{controller\_client}!controller\_client\_callback@{controller\_client\_callback}}
+\index{controller\_client\_callback@{controller\_client\_callback}!controller\_client@{controller\_client}}
+\doxysubsubsection{\texorpdfstring{controller\_client\_callback()}{controller\_client\_callback()}}
+{\footnotesize\ttfamily def controller\+\_\+client.\+controller\+\_\+client\+\_\+callback (\begin{DoxyParamCaption}\item[{}]{data }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Subscriber callback function for ``/path`` topic, runs the ``controller_client(goal)`` function
+
+Args:
+    data(Point[])
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacecontroller__client_afe7636c5f07fa8dc926e5440a47c5085}\label{namespacecontroller__client_afe7636c5f07fa8dc926e5440a47c5085}} 
+\index{controller\_client@{controller\_client}!main@{main}}
+\index{main@{main}!controller\_client@{controller\_client}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def controller\+\_\+client.\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Main function for controller_client node, initialises the node and states that it 
+subscribes ``/path`` topic with ``controller_client_callback(data)`` function
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacecontroller__client_a6baba095519d9d9d507537a9395420d4}\label{namespacecontroller__client_a6baba095519d9d9d507537a9395420d4}} 
+\index{controller\_client@{controller\_client}!LOG\_TAG@{LOG\_TAG}}
+\index{LOG\_TAG@{LOG\_TAG}!controller\_client@{controller\_client}}
+\doxysubsubsection{\texorpdfstring{LOG\_TAG}{LOG\_TAG}}
+{\footnotesize\ttfamily controller\+\_\+client.\+L\+O\+G\+\_\+\+T\+AG = anm.\+N\+O\+D\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+C\+L\+I\+E\+NT}
+

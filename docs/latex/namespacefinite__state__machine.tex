@@ -1,0 +1,126 @@
+\hypertarget{namespacefinite__state__machine}{}\doxysection{finite\+\_\+state\+\_\+machine Namespace Reference}
+\label{namespacefinite__state__machine}\index{finite\_state\_machine@{finite\_state\_machine}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classfinite__state__machine_1_1_corridor1}{Corridor1}}
+\item 
+class \mbox{\hyperlink{classfinite__state__machine_1_1_corridor2}{Corridor2}}
+\item 
+class \mbox{\hyperlink{classfinite__state__machine_1_1_room1}{Room1}}
+\item 
+class \mbox{\hyperlink{classfinite__state__machine_1_1_room2}{Room2}}
+\item 
+class \mbox{\hyperlink{classfinite__state__machine_1_1_room3}{Room3}}
+\item 
+class \mbox{\hyperlink{classfinite__state__machine_1_1_room4}{Room4}}
+\item 
+class \mbox{\hyperlink{classfinite__state__machine_1_1_room_e}{RoomE}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacefinite__state__machine_a16a5fa47902d201d2eedf30db0fabf70}{send\+\_\+room\+\_\+pose}} (room)
+\item 
+def \mbox{\hyperlink{namespacefinite__state__machine_a8cd81f8ab7757fc089ad481d6835850d}{send\+\_\+pose}} (x, y)
+\item 
+def \mbox{\hyperlink{namespacefinite__state__machine_a41225cd944336f18121ca93d83ca212a}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacefinite__state__machine_a211526dd32542146dd6be131f8ab254c}{L\+O\+G\+\_\+\+T\+AG}} = anm.\+N\+O\+D\+E\+\_\+\+F\+I\+N\+I\+T\+E\+\_\+\+S\+T\+A\+T\+E\+\_\+\+M\+A\+C\+H\+I\+NE
+\item 
+int \mbox{\hyperlink{namespacefinite__state__machine_aeee45575bf7a75aad71a2a4ea6140278}{L\+O\+O\+P\+\_\+\+T\+I\+ME}} = 2
+\item 
+\mbox{\hyperlink{namespacefinite__state__machine_a4f306029ec531d895197578e079674c3}{pub}} = None
+\item 
+\mbox{\hyperlink{namespacefinite__state__machine_a479c6c8c214fe8573eabfe5f2eeaad20}{tm}} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}.. module:: finite_state_machine
+:platform: Unix
+:synopsis: the finite_state_machine python script in ontological_robot_control package
+
+.. moduleauthor:: Donya MostaghniYazdi <donya.mostaghni01@gmail.com>
+
+Publishes to:
+/target_point
+
+Uses Service:
+/state/set_battery_level
+
+Uses helper script:
+/utilities/ontological_robot_control/topological_map.py
+
+Defines the states and transitions for the finite state machine of the topological map, it also 
+uses ``topological_map.py`` helper script to update the ontology while the process is running, and 
+retreives the target room based on last visit times, finaly sends the target room pose to the 
+``planner_client`` through ``/target_point`` in order to find the path
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacefinite__state__machine_a41225cd944336f18121ca93d83ca212a}\label{namespacefinite__state__machine_a41225cd944336f18121ca93d83ca212a}} 
+\index{finite\_state\_machine@{finite\_state\_machine}!main@{main}}
+\index{main@{main}!finite\_state\_machine@{finite\_state\_machine}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def finite\+\_\+state\+\_\+machine.\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The main function for finite_state_machine node, initialises the node and takes an instance of
+TopologicalMap class in the time instance now, defines the publisher to the ``/target_point`` topic
+, defines the states and transitions of the finite state machine for topological map and finally 
+starts the finite state machine process
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacefinite__state__machine_a8cd81f8ab7757fc089ad481d6835850d}\label{namespacefinite__state__machine_a8cd81f8ab7757fc089ad481d6835850d}} 
+\index{finite\_state\_machine@{finite\_state\_machine}!send\_pose@{send\_pose}}
+\index{send\_pose@{send\_pose}!finite\_state\_machine@{finite\_state\_machine}}
+\doxysubsubsection{\texorpdfstring{send\_pose()}{send\_pose()}}
+{\footnotesize\ttfamily def finite\+\_\+state\+\_\+machine.\+send\+\_\+pose (\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Publishes a target pose value to ``planner_client`` through ``/target_point`` topic 
+
+Args:
+    x(float)
+    y(float)
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacefinite__state__machine_a16a5fa47902d201d2eedf30db0fabf70}\label{namespacefinite__state__machine_a16a5fa47902d201d2eedf30db0fabf70}} 
+\index{finite\_state\_machine@{finite\_state\_machine}!send\_room\_pose@{send\_room\_pose}}
+\index{send\_room\_pose@{send\_room\_pose}!finite\_state\_machine@{finite\_state\_machine}}
+\doxysubsubsection{\texorpdfstring{send\_room\_pose()}{send\_room\_pose()}}
+{\footnotesize\ttfamily def finite\+\_\+state\+\_\+machine.\+send\+\_\+room\+\_\+pose (\begin{DoxyParamCaption}\item[{}]{room }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Sends target room's corresponding position by calling ``send_pose(x,y)`` function
+
+Args:
+    room(string)
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacefinite__state__machine_a211526dd32542146dd6be131f8ab254c}\label{namespacefinite__state__machine_a211526dd32542146dd6be131f8ab254c}} 
+\index{finite\_state\_machine@{finite\_state\_machine}!LOG\_TAG@{LOG\_TAG}}
+\index{LOG\_TAG@{LOG\_TAG}!finite\_state\_machine@{finite\_state\_machine}}
+\doxysubsubsection{\texorpdfstring{LOG\_TAG}{LOG\_TAG}}
+{\footnotesize\ttfamily finite\+\_\+state\+\_\+machine.\+L\+O\+G\+\_\+\+T\+AG = anm.\+N\+O\+D\+E\+\_\+\+F\+I\+N\+I\+T\+E\+\_\+\+S\+T\+A\+T\+E\+\_\+\+M\+A\+C\+H\+I\+NE}
+
+\mbox{\Hypertarget{namespacefinite__state__machine_aeee45575bf7a75aad71a2a4ea6140278}\label{namespacefinite__state__machine_aeee45575bf7a75aad71a2a4ea6140278}} 
+\index{finite\_state\_machine@{finite\_state\_machine}!LOOP\_TIME@{LOOP\_TIME}}
+\index{LOOP\_TIME@{LOOP\_TIME}!finite\_state\_machine@{finite\_state\_machine}}
+\doxysubsubsection{\texorpdfstring{LOOP\_TIME}{LOOP\_TIME}}
+{\footnotesize\ttfamily int finite\+\_\+state\+\_\+machine.\+L\+O\+O\+P\+\_\+\+T\+I\+ME = 2}
+
+\mbox{\Hypertarget{namespacefinite__state__machine_a4f306029ec531d895197578e079674c3}\label{namespacefinite__state__machine_a4f306029ec531d895197578e079674c3}} 
+\index{finite\_state\_machine@{finite\_state\_machine}!pub@{pub}}
+\index{pub@{pub}!finite\_state\_machine@{finite\_state\_machine}}
+\doxysubsubsection{\texorpdfstring{pub}{pub}}
+{\footnotesize\ttfamily finite\+\_\+state\+\_\+machine.\+pub = None}
+
+\mbox{\Hypertarget{namespacefinite__state__machine_a479c6c8c214fe8573eabfe5f2eeaad20}\label{namespacefinite__state__machine_a479c6c8c214fe8573eabfe5f2eeaad20}} 
+\index{finite\_state\_machine@{finite\_state\_machine}!tm@{tm}}
+\index{tm@{tm}!finite\_state\_machine@{finite\_state\_machine}}
+\doxysubsubsection{\texorpdfstring{tm}{tm}}
+{\footnotesize\ttfamily finite\+\_\+state\+\_\+machine.\+tm = None}
+

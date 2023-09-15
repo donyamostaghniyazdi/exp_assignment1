@@ -1,0 +1,66 @@
+\hypertarget{classcontroller_1_1_controlling_action}{}\doxysection{controller.\+Controlling\+Action Class Reference}
+\label{classcontroller_1_1_controlling_action}\index{controller.ControllingAction@{controller.ControllingAction}}
+
+
+Inheritance diagram for controller.\+Controlling\+Action\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{classcontroller_1_1_controlling_action__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for controller.\+Controlling\+Action\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{classcontroller_1_1_controlling_action__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classcontroller_1_1_controlling_action_a864137ca73531e2771504c4c95d92713}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+def \mbox{\hyperlink{classcontroller_1_1_controlling_action_aab54964f603544e46a4620b3f71dcc2a}{execute\+\_\+callback}} (self, goal)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Initialises the motion controller action server and moves the robot through the found path by consuming
+battery, with a particular speed in a time interval equal to the eucledian distance divided by speed, when
+the ``execute_callback(goal)`` function is called .
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcontroller_1_1_controlling_action_a864137ca73531e2771504c4c95d92713}\label{classcontroller_1_1_controlling_action_a864137ca73531e2771504c4c95d92713}} 
+\index{controller.ControllingAction@{controller.ControllingAction}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!controller.ControllingAction@{controller.ControllingAction}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def controller.\+Controlling\+Action.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcontroller_1_1_controlling_action_aab54964f603544e46a4620b3f71dcc2a}\label{classcontroller_1_1_controlling_action_aab54964f603544e46a4620b3f71dcc2a}} 
+\index{controller.ControllingAction@{controller.ControllingAction}!execute\_callback@{execute\_callback}}
+\index{execute\_callback@{execute\_callback}!controller.ControllingAction@{controller.ControllingAction}}
+\doxysubsubsection{\texorpdfstring{execute\_callback()}{execute\_callback()}}
+{\footnotesize\ttfamily def controller.\+Controlling\+Action.\+execute\+\_\+callback (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{goal }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The callback invoked when a client set a goal to the ``controller`` server.
+This function requires a list of via points (i.e., the plan), and it simulate
+a movement through each point with a delay computed by dividing the eucledian 
+distance between the robot current position and target point by the robot speed
+As soon as each via point is reached, the related robot position is updated
+in the ``robot-state`` node.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+scripts/\mbox{\hyperlink{controller_8py}{controller.\+py}}\end{DoxyCompactItemize}

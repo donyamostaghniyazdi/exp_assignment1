@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['save_119',['save',['../classarmor__api_1_1armor__utils__client_1_1_armor_utils_client.html#acb51d0d1292825fd4a96c8fddf3e697b',1,'armor_api::armor_utils_client::ArmorUtilsClient']]],
+  ['save_5fref_5fwith_5finferences_120',['save_ref_with_inferences',['../classarmor__api_1_1armor__utils__client_1_1_armor_utils_client.html#a7f2cda0054c2d106c831462166056c41',1,'armor_api::armor_utils_client::ArmorUtilsClient']]],
+  ['send_5fpose_121',['send_pose',['../namespacefinite__state__machine.html#a8cd81f8ab7757fc089ad481d6835850d',1,'finite_state_machine']]],
+  ['send_5froom_5fpose_122',['send_room_pose',['../namespacefinite__state__machine.html#a16a5fa47902d201d2eedf30db0fabf70',1,'finite_state_machine']]],
+  ['server_5fget_5fbattery_5flevel_123',['SERVER_GET_BATTERY_LEVEL',['../namespaceontological__robot__control_1_1architecture__name__mapper.html#a8b81852177ec0550dcf8762bc6d611ff',1,'ontological_robot_control::architecture_name_mapper']]],
+  ['server_5fget_5fpose_124',['SERVER_GET_POSE',['../namespaceontological__robot__control_1_1architecture__name__mapper.html#aa79cc94e067256d217329ff3ea104cdf',1,'ontological_robot_control::architecture_name_mapper']]],
+  ['server_5fset_5fbattery_5flevel_125',['SERVER_SET_BATTERY_LEVEL',['../namespaceontological__robot__control_1_1architecture__name__mapper.html#ab6440984fe3e9889b49aab15cf59a070',1,'ontological_robot_control::architecture_name_mapper']]],
+  ['server_5fset_5fpose_126',['SERVER_SET_POSE',['../namespaceontological__robot__control_1_1architecture__name__mapper.html#aecd99340f04b1419a4f1b748ee49a007',1,'ontological_robot_control::architecture_name_mapper']]],
+  ['set_5fbattery_5flevel_127',['set_battery_level',['../classrobot__states_1_1_robot_state.html#a9d666c94f6af03d229edecdfa0965746',1,'robot_states::RobotState']]],
+  ['set_5flog_5fto_5ffile_128',['set_log_to_file',['../classarmor__api_1_1armor__utils__client_1_1_armor_utils_client.html#a89ab9ee17a7e13b2e9015e00ad01a710',1,'armor_api::armor_utils_client::ArmorUtilsClient']]],
+  ['set_5flog_5fto_5fterminal_129',['set_log_to_terminal',['../classarmor__api_1_1armor__utils__client_1_1_armor_utils_client.html#a5bff71857c916177525a0a54aeaac318',1,'armor_api::armor_utils_client::ArmorUtilsClient']]],
+  ['set_5fpose_130',['set_pose',['../classrobot__states_1_1_robot_state.html#abfd8335889b8cb8aff179324e54bf326',1,'robot_states::RobotState']]],
+  ['setup_131',['setup',['../namespacesetup.html',1,'']]],
+  ['setup_2epy_132',['setup.py',['../setup_8py.html',1,'']]],
+  ['setup_5fargs_133',['setup_args',['../namespacesetup.html#a504ffa482edfe0eff08f64b2f5dff0e9',1,'setup']]],
+  ['sync_5fbuffered_5freasoner_134',['sync_buffered_reasoner',['../classarmor__api_1_1armor__utils__client_1_1_armor_utils_client.html#a8c696cc0f2bbe4c01fa9e73e4992455c',1,'armor_api::armor_utils_client::ArmorUtilsClient']]]
+];
