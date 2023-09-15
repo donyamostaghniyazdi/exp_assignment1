@@ -111,10 +111,10 @@ Once the dependencies are met, the package can be installed as it follows:
 
 ```bashscript
 $ mkdir -p catkin_ws/src
-```
-```bashscript
-$catkin_create_pkg ontological_robot_control
 
+
+$catkin_create_pkg ontological_robot_control
+```
 
 ```bashscript
 $ cd catkin_ws/src
